@@ -10,3 +10,5 @@ $app = new \Slim\App([
 $settings = require_once __DIR__ . '/container.php';
 
 $settings = require_once ROOT . 'routes/routes.php';
+
+return $app;
