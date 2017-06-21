@@ -2,18 +2,20 @@
 
 namespace App\Console;
 
-use App\Console\Commands\SayHello;
-use App\Console\Generators\ConsoleGeneratorCommand;
+use App\Console\Commands\Generators\ConsoleGeneratorCommand;
+use App\Console\Commands\Generators\ControllerGeneratorCommand;
+use App\Console\Commands\WelcomeCommand;
 
 class Kernel
 {
     
     protected $commands = [
-        SayHello::class,
+        WelcomeCommand::class
     ];
     
     protected $defaultCommands = [
         ConsoleGeneratorCommand::class,
+        ControllerGeneratorCommand::class,
     ];
     
     public function getCommands()

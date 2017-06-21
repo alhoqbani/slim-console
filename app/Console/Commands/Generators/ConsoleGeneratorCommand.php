@@ -1,12 +1,15 @@
 <?php
 
-namespace App\Console\Generators;
+namespace App\Console\Commands\Generators;
 
 use App\Console\BaseCommand;
+use App\Console\Traits\Generatable;
 use Symfony\Component\Console\Input\InputArgument;
 
 class ConsoleGeneratorCommand extends BaseCommand
 {
+    
+    use Generatable;
     
     /**
      * @var \Symfony\Component\Console\Output\OutputInterface
@@ -56,7 +59,7 @@ class ConsoleGeneratorCommand extends BaseCommand
             'StubCommandName' => $this->argument('name'),
         ]);
         
-        $target = __DIR__ . '/../Commands/' . $this->argument('name') . '.php';
+        $target = ROOT . 'app/Console/Commands/' . $this->argument('name') . '.php';
         
         if (file_exists($target)) {
             return $this->error('Command already exists');
@@ -85,14 +88,5 @@ class ConsoleGeneratorCommand extends BaseCommand
         return [
 //            [name, $shortcut = null, $mode = null, $description = '', $default = null],
         ];
-    }
-    
-    protected function generateStub($name, $replacements)
-    {
-        return str_replace(
-            array_keys($replacements),
-            $replacements,
-            file_get_contents(__DIR__ . "./../stubs/{$name}.stub")
-        );
     }
 }
